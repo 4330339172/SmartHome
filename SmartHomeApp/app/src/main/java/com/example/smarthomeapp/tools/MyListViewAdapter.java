@@ -25,7 +25,7 @@ public class MyListViewAdapter extends ArrayAdapter<listviewmode> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        listviewmode mode = getItem(position); //获取当前项的Fruit实例
+        listviewmode mode = getItem(position);
         View view;
         ViewHolder viewHolder;
 

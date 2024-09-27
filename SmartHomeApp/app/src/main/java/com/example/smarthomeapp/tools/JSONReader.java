@@ -1,5 +1,7 @@
 package com.example.smarthomeapp.tools;
 
+import static com.example.smarthomeapp.tools.DrawableMap.drawableMap;
+
 import android.content.Context;
 import android.content.res.AssetManager;
 
@@ -12,7 +14,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.example.smarthomeapp.tools.DrawableMap;
+
+import com.example.smarthomeapp.R;
 import com.example.smarthomeapp.mode.listviewmode;
 
 public class JSONReader {
@@ -41,7 +47,8 @@ public class JSONReader {
                 String name = item.getString("name");
                 String introduce = item.getString("introduce");
                 String iconName = item.getString("icon");
-                int icon = getIconResourceId(context,iconName);
+               // int icon = getIconResourceId(context, iconName);
+                int icon = getIconResourceId(iconName);
                 list.add(new listviewmode(name, introduce, icon));
             }
         } catch (JSONException e) {
@@ -49,11 +56,13 @@ public class JSONReader {
         }
         return list;
     }
-
-    private static int getIconResourceId(Context context,String iconName) {
-// 这里你需要根据你的实际情况获取资源ID
-// 例如，如果你的图片资源在 drawable 文件夹中，你可以这样做：
-        return context.getResources().getIdentifier(iconName, "drawable", context.getPackageName());
-        //  return 0; // 这是一个占位符，你需要根据实际情况返回正确的资源ID
+    /*
+    private static int getIconResourceId(Context context ,String iconName) {
+       return context.getResources().getIdentifier(iconName, "drawable", context.getPackageName());
     }
+    //*/
+    //*
+    private static int getIconResourceId(String iconName) {
+        return DrawableMap.drawableMap.get(iconName);
+    }//*/
 }

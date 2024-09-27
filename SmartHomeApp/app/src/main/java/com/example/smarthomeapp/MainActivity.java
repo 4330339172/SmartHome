@@ -19,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import static com.example.smarthomeapp.tools.StringChecker.checkString;
 
+import com.example.smarthomeapp.tools.DrawableMap;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        DrawableMap.getInstance();
+
         EditText username=(EditText)findViewById(R.id.username);
         TextView tip=(TextView)findViewById(R.id.tips);
         Button login=(Button)findViewById(R.id.login);
@@ -48,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String tempusername=username.getText().toString();
-                final String temppassword=password.getText().toString();
+              //  final String tempusername=username.getText().toString();
+              //  final String temppassword=password.getText().toString();
+                String tempusername="123";
+                String temppassword="123";
+
                 switch (checkString(tempusername))
                 {
                     case 0:{
