@@ -14,11 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.example.smarthomeapp.tools.DrawableMap;
-
-import com.example.smarthomeapp.R;
 import com.example.smarthomeapp.mode.listviewmode;
 
 public class JSONReader {
@@ -47,7 +43,6 @@ public class JSONReader {
                 String name = item.getString("name");
                 String introduce = item.getString("introduce");
                 String iconName = item.getString("icon");
-               // int icon = getIconResourceId(context, iconName);
                 int icon = getIconResourceId(iconName);
                 list.add(new listviewmode(name, introduce, icon));
             }
@@ -56,13 +51,7 @@ public class JSONReader {
         }
         return list;
     }
-    /*
-    private static int getIconResourceId(Context context ,String iconName) {
-       return context.getResources().getIdentifier(iconName, "drawable", context.getPackageName());
-    }
-    //*/
-    //*
     private static int getIconResourceId(String iconName) {
         return DrawableMap.drawableMap.get(iconName);
-    }//*/
+    }
 }

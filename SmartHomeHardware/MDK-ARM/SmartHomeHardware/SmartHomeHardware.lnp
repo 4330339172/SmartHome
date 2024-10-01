@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+"smarthomehardware\startup_stm32f103xb.o"
+"smarthomehardware\main.o"
+"smarthomehardware\gpio.o"
+"smarthomehardware\i2c.o"
+"smarthomehardware\stm32f1xx_it.o"
+"smarthomehardware\stm32f1xx_hal_msp.o"
+"smarthomehardware\oled.o"
+"smarthomehardware\stm32f1xx_hal_gpio_ex.o"
+"smarthomehardware\stm32f1xx_hal_i2c.o"
+"smarthomehardware\stm32f1xx_hal.o"
+"smarthomehardware\stm32f1xx_hal_rcc.o"
+"smarthomehardware\stm32f1xx_hal_rcc_ex.o"
+"smarthomehardware\stm32f1xx_hal_gpio.o"
+"smarthomehardware\stm32f1xx_hal_dma.o"
+"smarthomehardware\stm32f1xx_hal_cortex.o"
+"smarthomehardware\stm32f1xx_hal_pwr.o"
+"smarthomehardware\stm32f1xx_hal_flash.o"
+"smarthomehardware\stm32f1xx_hal_flash_ex.o"
+"smarthomehardware\stm32f1xx_hal_exti.o"
+"smarthomehardware\stm32f1xx_hal_tim.o"
+"smarthomehardware\stm32f1xx_hal_tim_ex.o"
+"smarthomehardware\system_stm32f1xx.o"
+--strict --scatter "SmartHomeHardware\SmartHomeHardware.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SmartHomeHardware.map" -o SmartHomeHardware\SmartHomeHardware.axf
