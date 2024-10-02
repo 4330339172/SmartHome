@@ -1,1 +1,3 @@
 智能家居的app项目
+app文件夹为基于andriod studio 的app代码
+hardware文件为基于keil的硬件代码
