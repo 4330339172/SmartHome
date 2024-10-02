@@ -27,6 +27,7 @@
 #include "dth11.h"
 #include "OLED.h"
 #include "hc_sr501.h"
+#include "buzzer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,13 +50,14 @@
 /* USER CODE BEGIN PV */
 
 /*
-    A0为DTH11温湿度模�?
-    A1为hc-sr501红外线探测模�?
+    A0为DTH11温湿度模�??
+    A1为hc-sr501红外线探测模�??
+    A2为buzzer
 */
 
 
 float temperature,humidity;//储存dth11的温度和湿度
-uint8_t Infrared_test_results;//hc-sr501红外线探测模�?
+uint8_t Infrared_test_results;//hc-sr501红外线探测模�??
 
 /* USER CODE END PV */
 
@@ -105,6 +107,8 @@ int main(void)
 
   PIR_Init();
 
+ // Buzzer_Init();
+
   OLED_Init();
   OLED_ON();
   OLED_CHARtest();
@@ -118,15 +122,24 @@ int main(void)
   while (1)
   {
 
-	  Read_DHT11(&temperature,&humidity);
+	Read_DHT11(&temperature,&humidity);
     Display_Float(0,1,temperature,2);
     Display_Float(0,4,humidity,2);
     HAL_Delay(1900);
 
     if(PIR_Read())
+    { 
       Display_Str(14,5,"Y");
+    //  Buzzer_On();
+	  // HAL_Delay(500);
+	  //  Buzzer_Off();
+	 //  HAL_Delay(10000);
+    }
     else 
+    {
       Display_Str(14,5,"N");
+    //  Buzzer_Off();
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

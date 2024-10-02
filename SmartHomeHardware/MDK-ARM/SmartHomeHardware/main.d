@@ -37,3 +37,4 @@ smarthomehardware\main.o: ../Core/Inc/gpio.h
 smarthomehardware\main.o: ../Core/Inc/dth11.h
 smarthomehardware\main.o: ../Core/Inc/OLED.h
 smarthomehardware\main.o: ../Core/Inc/hc_sr501.h
+smarthomehardware\main.o: ../Core/Inc/buzzer.h
