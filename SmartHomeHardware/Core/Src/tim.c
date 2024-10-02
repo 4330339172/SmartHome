@@ -103,12 +103,12 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 void delay_us(uint16_t us)
 {//微妙延时
     uint16_t differ = 0xffff - us - 5;
-    __HAL_TIM_SET_COUNTER(&htim2,differ);//设定TIM2计数器起始值
-    HAL_TIM_Base_Start(&htim2);//启动定时器
+    __HAL_TIM_SET_COUNTER(&htim2,differ);//设定TIM2计数器起始�??
+    HAL_TIM_Base_Start(&htim2);//启动定时�?
 
     while (differ<0xffff-5)//判断
     {
-        differ=__HAL_TIM_GET_COUNTER(&htim2);//查询定时器的计算值
+        differ=__HAL_TIM_GET_COUNTER(&htim2);//查询定时器的计算�?
     }
     HAL_TIM_Base_Stop(&htim2);
 }

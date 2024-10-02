@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "dth11.h"
 #include "OLED.h"
+#include "hc_sr501.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +47,16 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-float temperature,humidity;
+
+/*
+    A0为DTH11温湿度模�?
+    A1为hc-sr501红外线探测模�?
+*/
+
+
+float temperature,humidity;//储存dth11的温度和湿度
+uint8_t Infrared_test_results;//hc-sr501红外线探测模�?
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,23 +102,31 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+
+  PIR_Init();
+
   OLED_Init();
   OLED_ON();
   OLED_CHARtest();
   Display_Str(0,0,"Temperature:");
   Display_Str(0,3,"Humidity:");
+  Display_Str(0,5,"have people?:");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,GPIO_PIN_SET);
-	Read_DHT11(&temperature,&humidity);
+
+	  Read_DHT11(&temperature,&humidity);
     Display_Float(0,1,temperature,2);
     Display_Float(0,4,humidity,2);
     HAL_Delay(1900);
-//	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,GPIO_PIN_RESET);
+
+    if(PIR_Read())
+      Display_Str(14,5,"Y");
+    else 
+      Display_Str(14,5,"N");
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
