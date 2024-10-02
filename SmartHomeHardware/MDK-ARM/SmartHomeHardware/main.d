@@ -26,6 +26,13 @@ smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flas
 smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+smarthomehardware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+smarthomehardware\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
+smarthomehardware\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+smarthomehardware\main.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
 smarthomehardware\main.o: ../Core/Inc/i2c.h
+smarthomehardware\main.o: ../Core/Inc/tim.h
 smarthomehardware\main.o: ../Core/Inc/gpio.h
+smarthomehardware\main.o: ../Core/Inc/dth11.h
 smarthomehardware\main.o: ../Core/Inc/OLED.h

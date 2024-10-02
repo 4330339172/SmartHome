@@ -303,6 +303,22 @@ void Display_IMG(const uint8_t (*img)[128], uint8_t mode)
 	}
 }
 
+void Display_Float(uint8_t x, uint8_t y, float num, uint8_t decimal_places)
+{
+	char str[20]; // Buffer to hold the float as a string
+	char format[10];
+	sprintf(format, "%%.%df", decimal_places); // Create format string for the specified decimal places
+	sprintf(str, format, num); // Convert float to string with specified decimal places
+	Display_Str(x, y, str); // Display the string on the OLED
+}
+
+void Display_Int(uint8_t x, uint8_t y, int num)
+{
+	char str[12]; // Buffer to hold the integer as a string
+	sprintf(str, "%d", num); // Convert integer to string
+	Display_Str(x, y, str); // Display the string on the OLED
+}
+
 /****************************/
 // 下方为测试部分，在main中调用就行，可以测试自己的硬件或连线是否正确
 

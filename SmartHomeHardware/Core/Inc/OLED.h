@@ -17,5 +17,6 @@ void Display_Str(uint8_t x, uint8_t y, char *str);
 void Display_IMG(const uint8_t (*img)[128],uint8_t mode);
 void OLED_IMGtest(void);
 void OLED_CHARtest(void);
-
+void Display_Float(uint8_t x, uint8_t y, float num, uint8_t decimal_places);
+void Display_Int(uint8_t x, uint8_t y, int num);
 #endif

@@ -26,3 +26,8 @@ smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32
 smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+smarthomehardware\stm32f1xx_hal_msp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+smarthomehardware\stm32f1xx_hal_msp.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
+smarthomehardware\stm32f1xx_hal_msp.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+smarthomehardware\stm32f1xx_hal_msp.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
