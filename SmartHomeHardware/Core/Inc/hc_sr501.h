@@ -6,7 +6,6 @@
 #define PIR_PORT GPIOA
 #define PIR_PIN GPIO_PIN_1
 
-void PIR_Init(void);
 uint8_t PIR_Read(void);
 
 #endif

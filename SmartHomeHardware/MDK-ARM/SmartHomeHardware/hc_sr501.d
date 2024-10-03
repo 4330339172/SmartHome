@@ -23,6 +23,8 @@ smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 smarthomehardware\hc_sr501.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h

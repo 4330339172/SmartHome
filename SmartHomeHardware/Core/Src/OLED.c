@@ -340,10 +340,12 @@ void OLED_IMGtest(void)
 	OLED_Fill(0x00);
 	Display_IMG(yuanshen, 0);
 }
-void OLED_CHARtest(void)
+
+/**
+* @brief 清屏函数
+* @retval 无
+*/
+void OLED_Clear(void)
 {
-	OLED_Init();
-	OLED_Fill(0x00);
-	char test_str[] = "Hello World";
-	Display_Str(0, 0, test_str);
+OLED_Fill(0x00); // 使用全屏填充函数，将所有像素设置为0
 }

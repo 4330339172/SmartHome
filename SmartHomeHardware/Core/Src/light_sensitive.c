@@ -1,20 +1,31 @@
-#include "buzzer.h"
+#include "light_sensitive.h"
 
-
-void Buzzer_Init(void) {
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-    // 配置 GPIO 引脚为输出模式
-    GPIO_InitStruct.Pin = BUZZER_PIN;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(BUZZER_PORT, &GPIO_InitStruct);
+uint16_t LightSensor_Read() {
+    HAL_ADC_Start(&hadc1);
+   // HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+    uint16_t adc_value = HAL_ADC_GetValue(&hadc1);
+  //  HAL_ADC_Stop(&hadc1);
+    return adc_value;
 }
 
-void Buzzer_On(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET);
+uint16_t LightSensor_ReadAnalog(void) {
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+    uint16_t adc_value = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+    return adc_value;
 }
 
-void Buzzer_Off(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET);
+uint8_t LightSensor_ReadDigital(void) {
+return HAL_GPIO_ReadPin(LIGHT_SENSOR_DO_PORT, LIGHT_SENSOR_DO_PIN);
+}
+
+float LightSensor_GetIntensity() {
+// 根据传感器的特性曲线，将 ADC 值转换为光线强度
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+    uint16_t adc_value = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+    float intensity = (float)adc_value * (3.3 / 4096.0); // 假设 5V 参考电压和 12 位 ADC
+    return intensity;
 }

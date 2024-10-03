@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
@@ -28,6 +29,8 @@
 #include "OLED.h"
 #include "hc_sr501.h"
 #include "buzzer.h"
+#include "light_sensitive.h"
+#include "touch.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,15 +53,18 @@
 /* USER CODE BEGIN PV */
 
 /*
-    A0为DTH11温湿度模�??
-    A1为hc-sr501红外线探测模�??
+    A0为DTH11温湿度模�????????
+    A1为hc-sr501红外线探测模�????????
     A2为buzzer
+    A3为光敏传感器A0
+    A4为光敏传感器D0
+    A5为单路触摸模块
 */
 
 
 float temperature,humidity;//储存dth11的温度和湿度
-uint8_t Infrared_test_results;//hc-sr501红外线探测模�??
-
+uint8_t Infrared_test_results;//hc-sr501红外线探测模�????????
+uint16_t lightvalue;//储存光敏传感�??????
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -103,43 +109,26 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_TIM2_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
-  PIR_Init();
 
  // Buzzer_Init();
 
   OLED_Init();
   OLED_ON();
-  OLED_CHARtest();
-  Display_Str(0,0,"Temperature:");
-  Display_Str(0,3,"Humidity:");
-  Display_Str(0,5,"have people?:");
+  OLED_Clear();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	Read_DHT11(&temperature,&humidity);
-    Display_Float(0,1,temperature,2);
-    Display_Float(0,4,humidity,2);
-    HAL_Delay(1900);
-
-    if(PIR_Read())
-    { 
-      Display_Str(14,5,"Y");
-    //  Buzzer_On();
-	  // HAL_Delay(500);
-	  //  Buzzer_Off();
-	 //  HAL_Delay(10000);
-    }
+    HAL_Delay(1000);
+    Display_Int(0,0,LightSensor_ReadAnalog());
+    if(Touch_Read())
+      HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,GPIO_PIN_SET);
     else 
-    {
-      Display_Str(14,5,"N");
-    //  Buzzer_Off();
-    }
+      HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,GPIO_PIN_RESET);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -155,6 +144,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -181,6 +171,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
